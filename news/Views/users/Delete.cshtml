@@ -67,7 +67,11 @@
             @Html.DisplayFor(model => model.userRole)
         </dd>
         <dd>
-            <img src=@Model.photo  width="100px" height="100px" />
+            @{
+
+
+                <img src="@Url.Content(Model.photo)" , width="100px" height="100px" />
+            }
         </dd>
     </dl>
 

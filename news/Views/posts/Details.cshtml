@@ -1,0 +1,69 @@
+﻿@model news.Models.post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfViewers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfViewers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_image)
+        </dd>
+        <dd>
+                <img src=@Html.DisplayFor(model => model.artical_image) , width="100px" height="80px" />
+            
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

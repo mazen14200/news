@@ -1,0 +1,67 @@
+﻿@model IEnumerable<news.Models.post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.artical_Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.artical_Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postCreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.artical_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfViewers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.artical_image)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.artical_Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.artical_Body)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.postCreationDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.artical_Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberOfViewers)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.artical_image)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.artical_image)
+        <img src=@Html.DisplayFor(modelItem => item.artical_image) , width="100px" height="80px" />
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>

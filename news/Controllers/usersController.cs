@@ -54,9 +54,10 @@ namespace news.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(user.ImageFile.FileName);
                 string Extension = Path.GetExtension(user.ImageFile.FileName);
-                user.photo = "../Images_face_users/" + fileName+ Extension;
-                fileName = Path.Combine(Server.MapPath("../Images_face_users/"), fileName );
-                user.ImageFile.SaveAs(fileName+ Extension);
+                fileName = fileName + Extension;
+                user.photo = "~/Images_face_users/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images_face_users/"), fileName);
+                user.ImageFile.SaveAs(fileName);
                 string userRoleRadio = frm["userRole"].ToString();
                 user.userRole = userRoleRadio;
                 db.users.Add(user);
@@ -93,9 +94,11 @@ namespace news.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(user.ImageFile.FileName);
                 string Extension = Path.GetExtension(user.ImageFile.FileName);
-                user.photo = "../Images_face_users/" + fileName + Extension;
-                fileName = Path.Combine(Server.MapPath("../Images_face_users/"), fileName);
-                user.ImageFile.SaveAs(fileName + Extension);
+                fileName = fileName + Extension;
+                user.photo = "~/Images_face_users/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images_face_users/"), fileName);
+                user.ImageFile.SaveAs(fileName);
+
                 string userRoleRadio = frm["userRole"].ToString();
                 user.userRole = userRoleRadio;
                 db.Entry(user).State = EntityState.Modified;

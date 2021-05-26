@@ -38,7 +38,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
 <tr>
     <td>
         @Html.DisplayFor(modelItem => item.Fname)
@@ -62,7 +63,17 @@
         @Html.DisplayFor(modelItem => item.userRole)
     </td>
     <td>
-        <img src=@item.photo , width="100px" height="100px"/>
+
+        @{
+            if (item.photo != null)
+            {
+                string ph = Url.Content(item.photo);
+                <img src="@ph" , width="100px" height="80px" />
+            }
+
+
+        }
+
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.username }) |
