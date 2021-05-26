@@ -53,8 +53,17 @@
         @Html.DisplayFor(modelItem => item.artical_image)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.artical_image)
-        <img src=@Html.DisplayFor(modelItem => item.artical_image) , width="100px" height="80px" />
+
+        @{
+            if (item.artical_image != null)
+            {
+                string ph = Url.Content(item.artical_image);
+                <img src="@ph" , width="100px" height="80px" />
+            }
+
+
+        }
+
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

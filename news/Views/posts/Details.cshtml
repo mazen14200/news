@@ -58,8 +58,11 @@
             @Html.DisplayFor(model => model.artical_image)
         </dd>
         <dd>
-                <img src=@Html.DisplayFor(model => model.artical_image) , width="100px" height="80px" />
-            
+            @{
+
+
+                <img src="@Url.Content(Model.artical_image)" , width="100px" height="80px" />
+            }
         </dd>
     </dl>
 </div>

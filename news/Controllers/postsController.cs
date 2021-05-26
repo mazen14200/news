@@ -51,11 +51,14 @@ namespace news.Controllers
         {
             if (ModelState.IsValid)
             {
+                post.postCreationDate = DateTime.Now;
+
                 string fileName = Path.GetFileNameWithoutExtension(post.ImageFile.FileName);
                 string Extension = Path.GetExtension(post.ImageFile.FileName);
                 post.artical_image = "~/post_images/" + fileName + Extension;
                 fileName = Path.Combine(Server.MapPath("~/post_images/"), fileName);
                 post.ImageFile.SaveAs(fileName + Extension);
+
                 db.posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
