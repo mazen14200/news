@@ -16,6 +16,42 @@ namespace news.Controllers
         private identityModel db = new identityModel();
 
         // GET: users
+        
+
+        public ActionResult Login()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(user user1)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                    IEnumerable<user> users = db.users.ToList();
+                    if (user1.username != null)
+                    {
+                        foreach (var item in users)
+                        {
+                            if (item.username == user1.username)
+                            {
+                                if (item.password == user1.password)
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                                else
+                                {
+                                    return Content("wrong password or username");
+                                }
+                            }
+                        }
+                    }
+                }
+            
+            return View(user1);
+        }
         public ActionResult Index()
         {
             return View(db.users.ToList());
