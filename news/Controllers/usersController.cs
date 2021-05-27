@@ -74,7 +74,6 @@ namespace news.Controllers
                         }
                         else
                         {
-                            return Content("No user with this username");
                         }
                     }
                 }
