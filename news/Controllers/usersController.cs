@@ -35,55 +35,55 @@ namespace news.Controllers
                 IEnumerable<user> users = db.users.ToList();
                 IEnumerable<post> post = db.posts.ToList();
                 if (user1.username != null)
+                {
+                    foreach (var item in users)
                     {
-                        foreach (var item in users)
+                        if (item.username == user1.username)
                         {
-                            if (item.username == user1.username)
+                            if (item.password == user1.password)
                             {
-                                if (item.password == user1.password)
-                                {
-                                    ViewBag.Alredy_username=user1.username;
-                                    Alredy_username = user1.username;
-                                    if (item.userRole=="admin")
-                                    {
-                                    return RedirectToAction("Create", new RouteValueDictionary(new { Controller = "posts", Action = "Create", id = Alredy_username }));
+                                ViewBag.Alredy_username = user1.username;
 
-                                    return RedirectToRoute(new { Controller ="posts" , Action = "Create", id = Alredy_username });
+                                Alredy_username = user1.username;
+                                if (item.userRole == "admin")
+                                {
+                                    return RedirectToAction("profile", new RouteValueDictionary(new { Controller = "users", Action = "profile", id = user1.username }));
+
                                 }
                                 else if (item.userRole == "Editor")
-                                    {
+                                {
                                     return RedirectToAction("Create", new RouteValueDictionary(new { Controller = "posts", Action = "Create", id = Alredy_username }));
 
-                                    return RedirectToRoute(new { Controller = "posts", Action = "Create", id = Alredy_username });
-                                    return RedirectToAction("Create", "posts", new { id = Alredy_username });
-                                    return RedirectToAction("Create","posts");
-                                    return RedirectToAction("Create", new RouteValueDictionary ( new { Controller = "posts", Action = "Create", id = Alredy_username } ));
                                 }
                                 else if (item.userRole == "Viewer")
-                                    {
+                                {
 
-                                    return RedirectToRoute(new { Controller = "posts", Action = "Create", id = Alredy_username });
-                                }
-                                else
-                                    {
-
-                                    return Content("wrong password or username");
-
-                                    }
+                                    return RedirectToRoute(new { Controller = "posts", Action = "Wall", id = Alredy_username });
                                 }
                                 else
                                 {
+
                                     return Content("wrong password or username");
+
                                 }
                             }
+                            else
+                            {
+                                return Content("wrong password or username");
+                            }
+                        }
+                        else
+                        {
+                            return Content("No user with this username");
                         }
                     }
                 }
+            }
             return View(user1);
         }
 
 
-        public ActionResult profile(user admin)
+        public ActionResult profile()
         {
             user admin = db.users.Find("admin");
             return View(admin);

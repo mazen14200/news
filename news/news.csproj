@@ -170,7 +170,7 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Viewer\Wall.cshtml" />
+    <Content Include="Views\posts\Wall.cshtml" />
     <Content Include="Views\users\Register.cshtml" />
     <Content Include="Views\users\Delete.cshtml" />
     <Content Include="Views\users\Details.cshtml" />
@@ -187,6 +187,9 @@
     <Content Include="Views\posts\Approve.cshtml" />
     <Content Include="Views\posts\Index_Approved_posts.cshtml" />
     <Content Include="Views\posts\Refuse.cshtml" />
+    <Content Include="Views\Shared\_Editor_Layout.cshtml" />
+    <Content Include="Views\users\_Admin_Layout.cshtml" />
+    <Content Include="Views\Shared\_Viewer_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -198,8 +201,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Bootstrap\" />
     <Folder Include="post_images\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Editor\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105241442446_createTabe.resx">

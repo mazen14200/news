@@ -27,6 +27,12 @@ namespace news.Controllers
             return View(db.posts.Where(x => x.artical_Type == "Approved").ToList());
         }
 
+        public ActionResult wall()
+        {
+            IEnumerable<post> posts = db.posts.Where(x => x.artical_Type == "Approved");
+            return View(posts);
+        }
+
         // GET: posts/Details/5
         public ActionResult Details(int? id)
         {

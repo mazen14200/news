@@ -9,6 +9,8 @@
 
 <div>
     <h4>user</h4>
+
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -77,6 +79,11 @@
 
     </
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.username }) |
+        @{
+            var User = Model;
+
+            Html.ActionLink("Edit", "Edit", new { id = User.username });
+        }
+       
         @Html.ActionLink("Back to List", "Index")
     </p>
