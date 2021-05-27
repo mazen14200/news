@@ -83,7 +83,7 @@ namespace news.Controllers
         }
 
 
-        public ActionResult profile(int? id)
+        public ActionResult profile(user admin)
         {
             user admin = db.users.Find("admin");
             return View(admin);
