@@ -186,6 +186,7 @@
     <Content Include="Views\users\profile.cshtml" />
     <Content Include="Views\posts\Approve.cshtml" />
     <Content Include="Views\posts\Index_Approved_posts.cshtml" />
+    <Content Include="Views\posts\Refuse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

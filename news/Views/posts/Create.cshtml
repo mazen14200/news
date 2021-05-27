@@ -1,12 +1,12 @@
 ﻿@model news.Models.post
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create post";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 
 }
 
-<h2>Create</h2>
+<h2>Create post</h2>
 @using (Html.BeginForm("Create", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

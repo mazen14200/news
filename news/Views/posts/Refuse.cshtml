@@ -1,0 +1,83 @@
+﻿@model news.Models.post
+
+@{
+    ViewBag.Title = "Refuse";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+
+}
+
+<h2>Refuse</h2>
+
+<h3>Are you sure you want to Refuse this?</h3>
+<div>
+    <h4>post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfViewers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfViewers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artical_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artical_image)
+        </dd>
+
+        <dd>
+            @{
+
+
+                <img src="@Url.Content(Model.artical_image)" , width="100px" height="80px" />
+            }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Refuse" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index_waiting_posts")
+        </div>
+    }
+</div>

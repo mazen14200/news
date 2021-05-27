@@ -65,11 +65,34 @@ namespace news.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ApproveConfirmed(int id)
         {
+            db.posts.Find(id).artical_Type = "Approved";
+            db.SaveChanges();
+            return RedirectToAction("Index_waiting_posts");
+        }
+
+        // GET: posts/Approve/5  type="Approved" / "waiting"
+        public ActionResult Refuse(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             post post = db.posts.Find(id);
-            post Approverdpost = post;
-            db.posts.Remove(post);
-            Approverdpost.artical_Type = "Approved";
-            db.posts.Add(Approverdpost);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
+
+
+
+        // POST: posts/Approve/5   type="Approved" / "waiting"
+        [HttpPost, ActionName("Refuse")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RefuseConfirmed(int id)
+        {
+            db.posts.Find(id).artical_Type = "Refused";
             db.SaveChanges();
             return RedirectToAction("Index_waiting_posts");
         }
@@ -109,7 +132,7 @@ namespace news.Controllers
 
                 db.posts.Add(post);
                 db.SaveChanges();
-                return RedirectToRoute(new { Controller = "posts", Action = "Index_waiting_posts", id  });
+                return RedirectToRoute(new { Controller = "posts", Action = "create", id  });
             
             return View(post);
         }

@@ -8,9 +8,7 @@
 
 <h2>Index_waiting_posts</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -70,11 +68,9 @@
 
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.id })|
+
         @Html.ActionLink("Approve", "Approve", new { id = item.id }) |
-        @Html.ActionLink("Refuse", "Delete", new { id = item.id })
+        @Html.ActionLink("Refuse", "Refuse", new { id = item.id })
     </td>
 </tr>
 }
