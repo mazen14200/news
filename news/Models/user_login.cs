@@ -10,36 +10,17 @@ using RequiredAttribute = System.ComponentModel.DataAnnotations.RequiredAttribut
 
 namespace news.Models
 {
-    public class user
+    public class user_login
     {
-        [Required]
 
-        public string Fname { get; set; }
-        [Required]
-
-        public string Lname { get; set; }
         [Key]
         [Required]
         public string username { get; set; }
         [EmailAddress] 
-        [Required]
         public string Email { get; set; }
         [Required]
         public string password { get; set; }
-        [Phone]
-        [Required]
-        public string phoneNumber { get; set; }
-        
 
-
-        [StringLength(2000), DisplayName("upload Image")]
-        public string photo { get; set; }
-        
-
-        public string userRole { get; set; }
-
-        [NotMapped]
-        public HttpPostedFileBase ImageFile { get; set; }
 
 
 

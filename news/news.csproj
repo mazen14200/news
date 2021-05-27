@@ -49,6 +49,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -107,11 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\adminController.cs" />
-    <Compile Include="Controllers\editorController.cs" />
     <Compile Include="Controllers\postsController.cs" />
     <Compile Include="Controllers\usersController.cs" />
-    <Compile Include="Controllers\viewerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,8 +141,21 @@
     <Compile Include="Migrations\202105251659352_edit_image1.Designer.cs">
       <DependentUpon>202105251659352_edit_image1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105270320374_alter_post.cs" />
+    <Compile Include="Migrations\202105270320374_alter_post.Designer.cs">
+      <DependentUpon>202105270320374_alter_post.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105270449384_validation.cs" />
+    <Compile Include="Migrations\202105270449384_validation.Designer.cs">
+      <DependentUpon>202105270449384_validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105270703419_validation1.cs" />
+    <Compile Include="Migrations\202105270703419_validation1.Designer.cs">
+      <DependentUpon>202105270703419_validation1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\post.cs" />
+    <Compile Include="Models\user_login.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Models\identityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,6 +182,7 @@
     <Content Include="Views\posts\Edit.cshtml" />
     <Content Include="Views\posts\Index.cshtml" />
     <Content Include="Views\users\Login.cshtml" />
+    <Content Include="Views\Shared\_Admin_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -206,6 +218,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105251659352_edit_image1.resx">
       <DependentUpon>202105251659352_edit_image1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105270320374_alter_post.resx">
+      <DependentUpon>202105270320374_alter_post.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105270449384_validation.resx">
+      <DependentUpon>202105270449384_validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105270703419_validation1.resx">
+      <DependentUpon>202105270703419_validation1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

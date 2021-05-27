@@ -23,6 +23,7 @@ namespace news.Models
         [Key]
         public int id { get; set; }
         public user editor_name { get; set; }
+        public string editor_username { get; set; }
 
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }

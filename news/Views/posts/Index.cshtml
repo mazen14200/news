@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<news.Models.post>
-
+@using news.Models
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+
 }
 
 <h2>Index</h2>
@@ -15,7 +17,7 @@
             @Html.DisplayNameFor(model => model.artical_Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.artical_Body)
+            @Html.DisplayNameFor(model => model.editor_username)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.postCreationDate)
@@ -32,13 +34,15 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
 <tr>
     <td>
         @Html.DisplayFor(modelItem => item.artical_Title)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.artical_Body)
+        @Html.DisplayFor(modelItem => item.editor_username)
+
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.postCreationDate)

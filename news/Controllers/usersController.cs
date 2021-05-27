@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using news.Models;
 
 namespace news.Controllers
@@ -14,9 +15,10 @@ namespace news.Controllers
     public class usersController : Controller
     {
         private identityModel db = new identityModel();
+        string Alredy_username;
 
         // GET: users
-        
+
 
         public ActionResult Login()
         {
@@ -25,13 +27,14 @@ namespace news.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(user user1)
+        public ActionResult Login(user_login user1)
         {
             if (ModelState.IsValid)
             {
-                
-                    IEnumerable<user> users = db.users.ToList();
-                    if (user1.username != null)
+
+                IEnumerable<user> users = db.users.ToList();
+                IEnumerable<post> post = db.posts.ToList();
+                if (user1.username != null)
                     {
                         foreach (var item in users)
                         {
@@ -39,7 +42,34 @@ namespace news.Controllers
                             {
                                 if (item.password == user1.password)
                                 {
-                                    return RedirectToAction("Index");
+                                    ViewBag.Alredy_username=user1.username;
+                                    Alredy_username = user1.username;
+                                    if (item.userRole=="admin")
+                                    {
+                                    return RedirectToAction("Create", new RouteValueDictionary(new { Controller = "posts", Action = "Create", id = Alredy_username }));
+
+                                    return RedirectToRoute(new { Controller ="posts" , Action = "Create", id = Alredy_username });
+                                }
+                                else if (item.userRole == "Editor")
+                                    {
+                                    return RedirectToAction("Create", new RouteValueDictionary(new { Controller = "posts", Action = "Create", id = Alredy_username }));
+
+                                    return RedirectToRoute(new { Controller = "posts", Action = "Create", id = Alredy_username });
+                                    return RedirectToAction("Create", "posts", new { id = Alredy_username });
+                                    return RedirectToAction("Create","posts");
+                                    return RedirectToAction("Create", new RouteValueDictionary ( new { Controller = "posts", Action = "Create", id = Alredy_username } ));
+                                }
+                                else if (item.userRole == "Viewer")
+                                    {
+
+                                    return RedirectToRoute(new { Controller = "posts", Action = "Create", id = Alredy_username });
+                                }
+                                else
+                                    {
+
+                                    return Content("wrong password or username");
+
+                                    }
                                 }
                                 else
                                 {
@@ -49,8 +79,12 @@ namespace news.Controllers
                         }
                     }
                 }
-            
             return View(user1);
+        }
+        public string EditorUsername()
+        {
+
+            return (Alredy_username);
         }
         public ActionResult Index()
         {

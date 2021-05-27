@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using news.Models;
 
 namespace news.Controllers
@@ -14,7 +15,6 @@ namespace news.Controllers
     public class postsController : Controller
     {
         private identityModel db = new identityModel();
-
         // GET: posts
         public ActionResult Index()
         {
@@ -37,8 +37,13 @@ namespace news.Controllers
         }
 
         // GET: posts/Create
-        public ActionResult Create()
+        [Route("posts/Create/{id}")]
+
+        public ActionResult Create(string id)
         {
+            ViewBag.editorusername = id;
+
+            ViewData["username"] = id;
             return View();
         }
 
@@ -47,12 +52,12 @@ namespace news.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,artical_Title,artical_Body,postCreationDate,artical_Type,NumberOfViewers,artical_image,ImageFile")] post post)
+        [Route("posts/Create/{id}")]
+        public ActionResult Create([Bind(Include = "id,artical_Title,artical_Body,postCreationDate,artical_Type,NumberOfViewers,artical_image,ImageFile,editor_username")] post post, string id)
         {
-            if (ModelState.IsValid)
-            {
+            post.editor_username = id;
+            
                 post.postCreationDate = DateTime.Now;
-
                 string fileName = Path.GetFileNameWithoutExtension(post.ImageFile.FileName);
                 string Extension = Path.GetExtension(post.ImageFile.FileName);
                 post.artical_image = "~/post_images/" + fileName + Extension;
@@ -61,9 +66,8 @@ namespace news.Controllers
 
                 db.posts.Add(post);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
+                return RedirectToRoute(new { Controller = "posts", Action = "Index", id  });
+            
             return View(post);
         }
 
@@ -87,10 +91,12 @@ namespace news.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,artical_Title,artical_Body,postCreationDate,artical_Type,NumberOfViewers,artical_image,ImageFile")] post post)
+        public ActionResult Edit([Bind(Include = "id,artical_Title,artical_Body,postCreationDate,artical_Type,NumberOfViewers,artical_image,ImageFile")] post post )
         {
             if (ModelState.IsValid)
             {
+
+                post.postCreationDate = DateTime.Now;
                 string fileName = Path.GetFileNameWithoutExtension(post.ImageFile.FileName);
                 string Extension = Path.GetExtension(post.ImageFile.FileName);
                 post.artical_image = "~/post_images/" + fileName + Extension;
