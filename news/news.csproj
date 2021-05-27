@@ -180,9 +180,12 @@
     <Content Include="Views\posts\Delete.cshtml" />
     <Content Include="Views\posts\Details.cshtml" />
     <Content Include="Views\posts\Edit.cshtml" />
-    <Content Include="Views\posts\Index.cshtml" />
+    <Content Include="Views\posts\Index_waiting_posts.cshtml" />
     <Content Include="Views\users\Login.cshtml" />
     <Content Include="Views\Shared\_Admin_Layout.cshtml" />
+    <Content Include="Views\users\profile.cshtml" />
+    <Content Include="Views\posts\Approve.cshtml" />
+    <Content Include="Views\posts\Index_Approved_posts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

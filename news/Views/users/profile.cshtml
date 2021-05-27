@@ -1,0 +1,82 @@
+﻿@model news.Models.user
+
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>profile</h2>
+
+<div>
+    <h4>user</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userRole)
+        </dd>
+        <dd>
+            @{
+
+
+                <img src="@Url.Content(Model.photo)" , width="200px" height="300px" />
+            }
+        </dd>
+    </dl>
+
+    </
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.username }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

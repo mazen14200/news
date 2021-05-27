@@ -81,6 +81,15 @@ namespace news.Controllers
                 }
             return View(user1);
         }
+
+
+        public ActionResult profile()
+        {
+            user admin = db.users.Find("admin");
+            return View(admin);
+        }
+
+
         public string EditorUsername()
         {
 

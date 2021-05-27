@@ -15,10 +15,16 @@ namespace news.Controllers
     public class postsController : Controller
     {
         private identityModel db = new identityModel();
-        // GET: posts
-        public ActionResult Index()
+        // GET: All Waiting posts
+        public ActionResult Index_waiting_posts()
         {
-            return View(db.posts.ToList());
+            return View(db.posts.Where(x=>x.artical_Type== "waiting").ToList());
+        }
+
+        // GET: All Approved posts
+        public ActionResult Index_Approved_posts()
+        {
+            return View(db.posts.Where(x => x.artical_Type == "Approved").ToList());
         }
 
         // GET: posts/Details/5
@@ -35,6 +41,42 @@ namespace news.Controllers
             }
             return View(post);
         }
+
+
+        // GET: posts/Approve/5  type="Approved" / "waiting"
+        public ActionResult Approve(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            post post = db.posts.Find(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
+
+
+
+        // POST: posts/Approve/5   type="Approved" / "waiting"
+        [HttpPost, ActionName("Approve")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ApproveConfirmed(int id)
+        {
+            post post = db.posts.Find(id);
+            post Approverdpost = post;
+            db.posts.Remove(post);
+            Approverdpost.artical_Type = "Approved";
+            db.posts.Add(Approverdpost);
+            db.SaveChanges();
+            return RedirectToAction("Index_waiting_posts");
+        }
+
+
+
+
 
         // GET: posts/Create
         [Route("posts/Create/{id}")]
@@ -55,6 +97,7 @@ namespace news.Controllers
         [Route("posts/Create/{id}")]
         public ActionResult Create([Bind(Include = "id,artical_Title,artical_Body,postCreationDate,artical_Type,NumberOfViewers,artical_image,ImageFile,editor_username")] post post, string id)
         {
+            post.artical_Type = "Waiting";
             post.editor_username = id;
             
                 post.postCreationDate = DateTime.Now;
@@ -66,7 +109,7 @@ namespace news.Controllers
 
                 db.posts.Add(post);
                 db.SaveChanges();
-                return RedirectToRoute(new { Controller = "posts", Action = "Index", id  });
+                return RedirectToRoute(new { Controller = "posts", Action = "Index_waiting_posts", id  });
             
             return View(post);
         }
@@ -104,7 +147,7 @@ namespace news.Controllers
                 post.ImageFile.SaveAs(fileName + Extension);
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_waiting_posts");
             }
             return View(post);
         }
@@ -132,7 +175,7 @@ namespace news.Controllers
             post post = db.posts.Find(id);
             db.posts.Remove(post);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index_waiting_posts");
         }
 
         protected override void Dispose(bool disposing)
