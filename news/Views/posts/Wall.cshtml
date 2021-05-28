@@ -19,28 +19,28 @@
 
 @foreach (var item in Model)
 {
-    <spanclass ="navbar-form" style=" align-items:center; padding-block-end:100px;">
+    <spanclass ="navbar-form" style=" align-items:center; padding-block-end:100px; ;text-align:right;">
         <table>
             <tr>
-                <td class="navbar" style="color:#6d231d;background-color:#d1ea96 ; font-size:x-large">
+                <td class="navbar" style="color:#6d231d;background-color:#d1ea96 ; font-size:x-large ;text-align:right;">
                     @Html.DisplayFor(modelItem => item.artical_Title)
                 </td>
             </tr>
             <tr>
-                <td class="navbar" style="color:#6d231d;background-color:#c3e4ed ; font-size:20px">
+                <td class="navbar" style="color:#6d231d;background-color:#c3e4ed ; font-size:20px ;text-align:right;">
                     @Html.DisplayFor(modelItem => item.artical_Body)
                 </td>
             </tr>
             <tr>
-                <td class="navbar" style="color:#6d231d;background-color:#7f8384 ; font-size:15px">
+                <td class="navbar" style="color:#fce856;background-color:#7f8384 ; font-size:15px">
                     @Html.DisplayFor(modelItem => item.postCreationDate)
                 </td>
             </tr>
             <tr><td><br /><td></tr>
-
+            
             <tr>
                 <td>
-
+                    <div style="; text-align: center;">
 
                     @{
                         if (item.artical_image != null)
@@ -51,7 +51,7 @@
 
 
                     }
-
+                </div>
                 </td>
             </tr>
 
